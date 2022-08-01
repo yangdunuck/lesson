@@ -21,6 +21,12 @@ public class EnemyMove : MonoBehaviour
     {
         rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
 
+        //좌우 방향 반전
+        if (nextMove != 0)
+        {
+            spriteRenderer.flipX = nextMove == 1;
+        }
+
         //이동경로 앞이 낭떠러지일 때 방향 전환
         Vector2 frontvec = new Vector2(rigid.position.x + nextMove * 0.2f, rigid.position.y);
         Debug.DrawRay(frontvec, Vector3.down, new Color(0, 1, 0));
@@ -45,10 +51,5 @@ public class EnemyMove : MonoBehaviour
         //스프라이트 애니메이션
         anim.SetInteger("walkSpeed", nextMove);
 
-        //좌우 방향 반전
-        if (nextMove != 0)
-        {
-            spriteRenderer.flipX = nextMove == 1;
-        }
     }
 }
