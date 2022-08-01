@@ -21,7 +21,7 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         //점프
-        if (Input.GetButtonDown("Jump") && !anim.GetBool("isJumping"))
+        if (Input.GetButtonDown("Jump") && !anim.GetBool("isJumping"))//Jump키를 누르고, Jump모션이 실행 중이 아닐 때 실행
         {
             rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             anim.SetBool("isJumping",true);
@@ -60,7 +60,6 @@ public class PlayerMove : MonoBehaviour
             RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, Vector3.down, 1, LayerMask.GetMask("Platform"));//Layer의 이름이 Platform인 것만 스캔
             if (rayHit.collider != null)
             {
-                Debug.Log(rayHit.distance);
                 if (rayHit.distance < 0.5f)
                 {
                     anim.SetBool("isJumping", false);
